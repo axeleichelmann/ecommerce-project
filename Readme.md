@@ -16,7 +16,10 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
  > **To develop a system that will identify high value shoppers recommend personalised advertising strategies for these customers**
 
  To achieve this objective, we broke it down into the following mini-objectives:
- 1. Perform in depth exploratory data analysis of the *orders*, *order_items*, *products*, *events*, and *users* tables.
+ 1. Perform in depth exploratory data analysis of the *orders*, *order_items*, *products*, *events*, and *users* tables. In particular we want to get an idea of:
+    * What is the spread of time between purchases for a single customer?
+    * What are the most popular products?
+    * Who are **currently** the most valuable customers (customers with the highest realized revenue)?
  2. Develop a CLV (customer lifetime value) prediction model and use it to identify high value shoppers.
  3. Develop a function that identifies a customer's shopping preferences based on their previous transactions.
  4. Combine the above two processes to create an app which recommends shoppers for targeted advertisement, and suggests items to promote.
