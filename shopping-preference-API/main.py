@@ -51,11 +51,6 @@ df_products = client.query_and_wait(PRODUCTS_QUERY).to_dataframe()
 model = SentenceTransformer("all-mpnet-base-v2")
 metric = DistanceMetric.get_metric('euclidean')
 
-# Get customers recommended products
-customer_id = ?????
-getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
-
-
 # Create fastAPI object
 app = FastAPI()
 
@@ -67,8 +62,8 @@ def health_check():
 def info():
     return {'name' : 'Product Recommendation', 'Description' : "Search API to identify similar products to a customers previous purchases"}
 
-@app.get('/search')
-def search(customer_id : int):
+@app.get('/recommendProducts')
+def recommendProducts(customer_id : int):
     rec_df = getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
     return rec_df
 
