@@ -56,6 +56,23 @@ customer_id = ?????
 getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
 
 
+# Create fastAPI object
+app = FastAPI()
+
+@app.get('/')
+def health_check():
+    return {'health_check' : 'OK'}
+
+@app.get('/info')
+def info():
+    return {'name' : 'Product Recommendation', 'Description' : "Search API to identify similar products to a customers previous purchases"}
+
+@app.get('/search')
+def search(customer_id : int):
+    rec_df = getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
+    return rec_df
+
+
 
 
 
