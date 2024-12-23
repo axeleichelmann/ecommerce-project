@@ -36,7 +36,7 @@ jobs:
 
       - name: Build and Push Docker Image to GCP Artifact Registry
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f /shopping-preference-API/Dockerfile .
+          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f shopping-preference-API/Dockerfile shopping-preference-API/.
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
       - name: Deploy to Cloud Run Staging Environment
