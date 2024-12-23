@@ -9,7 +9,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from sentence_transformers import SentenceTransformer
 
-from utils import getRecommendedProducts
+from .utils import getRecommendedProducts
 
 import os
 from google.cloud import bigquery
@@ -62,12 +62,10 @@ def health_check():
 def info():
     return {'name' : 'Product Recommendation', 'Description' : "Search API to identify similar products to a customers previous purchases"}
 
-@app.get('/recommendProducts')
+@app.get('/recommend_products')
 def recommendProducts(customer_id : int):
     rec_df = getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
     return rec_df
-
-
 
 
 

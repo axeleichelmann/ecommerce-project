@@ -1,4 +1,4 @@
-name: Deploy to Cloud Run
+name: Deploy to Cloud Run Staging Area
 
 env:
   SERVICE_NAME: product-recs-api
@@ -30,20 +30,22 @@ jobs:
       - name: Set up Cloud SDK
         uses: 'google-github-actions/setup-gcloud@v2'
 
-      - name: Configure Docker
+      - name: Configure Docker with GCP
         run: |
           gcloud auth configure-docker europe-west10-docker.pkg.dev
 
-      - name: Build and Push Docker Image
+      - name: Build and Push Docker Image to GCP Artifact Registry
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f Dockerfile.prod /shopping-preference-API
+          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f shopping-preference-API/Dockerfile shopping-preference-API/.
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
-      - name: Deploy to Cloud Run
+      - name: Deploy to Cloud Run Staging Environment
         run: |
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
             --platform managed \
             --region europe-west10 \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --port=8080 \
+            --memory=2Gi
