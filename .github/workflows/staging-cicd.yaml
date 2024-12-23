@@ -1,4 +1,4 @@
-name: Deploy to Cloud Run
+name: Deploy to Cloud Run Staging Area
 
 env:
   SERVICE_NAME: product-recs-api
@@ -46,4 +46,6 @@ jobs:
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
             --platform managed \
             --region europe-west10 \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --port=8080 \
+            --memory=2Gi
