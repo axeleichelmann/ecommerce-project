@@ -83,6 +83,11 @@ def info():
 
 @app.get('/recommend_products')
 def recommendProducts(customer_id : int):
-    rec_df = getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
-    return rec_df
+    df_rec= getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
+    response = df_rec[['id','name','sku']].to_dict(orient='list')
+    return response
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host='0.0.0.0', port=8080)
 
