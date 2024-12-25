@@ -73,21 +73,28 @@ metric = DistanceMetric.get_metric('euclidean')
 # Create fastAPI object
 app = FastAPI()
 
+print(f"Initiating 'health check' function")
+start_time = datetime.now()
 @app.get('/')
 def health_check():
     return {'health_check' : 'OK'}
+end_time = datetime.now()
+print(f"'health check' function was successfully initiated - Time Taken = {time_end-time_start}s")
 
+print(f"Initiating 'info' function")
+start_time = datetime.now()
 @app.get('/info')
 def info():
     return {'name' : 'Product Recommendation', 'Description' : "Search API to identify similar products to a customers previous purchases"}
+end_time = datetime.now()
+print(f"'info' function was successfully initiated - Time Taken = {time_end-time_start}s")
 
+print(f"Initiating 'recommend products' function")
+start_time = datetime.now()
 @app.get('/recommend_products')
-def recommendProducts(customer_id : int):
+async def recommendProducts(customer_id : int):
     df_rec= getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
     response = df_rec[['id','name','sku']].to_dict(orient='list')
     return response
-
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host='0.0.0.0', port=8080)
-
+end_time = datetime.now()
+print(f"'Recommend Products' function was successfully initiated - Time Taken = {time_end-time_start}s")
