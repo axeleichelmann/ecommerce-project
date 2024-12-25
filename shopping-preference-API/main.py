@@ -92,7 +92,7 @@ print(f"'info' function was successfully initiated - Time Taken = {time_end-time
 print(f"Initiating 'recommend products' function")
 start_time = datetime.now()
 @app.get('/recommend_products')
-async def recommendProducts(customer_id : int):
+def recommendProducts(customer_id : int):
     df_rec= getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
     response = df_rec[['id','name','sku']].to_dict(orient='list')
     return response
