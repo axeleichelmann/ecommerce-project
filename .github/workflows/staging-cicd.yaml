@@ -40,7 +40,7 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
       - name: Deploy to Cloud Run Staging Environment
-        run: |
+        run: | # Set memory and number of CPUs for service to be the same as local system
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
@@ -48,7 +48,6 @@ jobs:
             --region europe-west10 \
             --allow-unauthenticated \
             --port=8080 \
-            --memory=8Gi \
-            --cpu=4 \
+            --memory=15Gi --cpu=8 \   
             --timeout=3600
 

@@ -94,7 +94,7 @@ start_time = datetime.now()
 @app.get('/recommend_products')
 def recommendProducts(customer_id : int):
     df_rec= getRecommendedProducts(customer_id, model, metric, df_orders, df_products)
-    response = df_rec[['id','name','sku']].to_dict(orient='list')
+    response = df_rec.to_dict(orient='list')
     return response
 end_time = datetime.now()
 print(f"'Recommend Products' function was successfully initiated - Time Taken = {time_end-time_start}s")
