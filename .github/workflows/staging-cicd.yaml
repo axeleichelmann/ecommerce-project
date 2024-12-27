@@ -49,6 +49,7 @@ jobs:
             --allow-unauthenticated \
             --port=8080 \
             --memory=16Gi \
-            --cpu=8 \   
+            --cpu=8 \
+            --timeout=3600 \
             --max-instances=1
 
