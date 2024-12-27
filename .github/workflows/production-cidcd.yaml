@@ -1,17 +1,14 @@
-name: Deploy to Cloud Run Staging Area
+name: Deploy to Cloud Run Production Area
 
 env:
-  SERVICE_NAME: product-recs-api
+  SERVICE_NAME: ecommerce-api-production
   PROJECT_ID: ecommerce-data-project-444616
-  DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/api
+  DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/production-api
 
 on:
   push:
     branches:
-      - staging
-  pull_request:
-    branches:
-      - staging
+      - main
 
 jobs:
   dockerize-and-deploy:
@@ -39,7 +36,7 @@ jobs:
           docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f shopping-preference-API/Dockerfile shopping-preference-API/.
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
-      - name: Deploy to Cloud Run Staging Environment
+      - name: Deploy to Cloud Run Production Environment
         run: |  # Set CPU & memory to approx. same as local computer
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
@@ -52,4 +49,3 @@ jobs:
             --cpu=8 \
             --timeout=3600 \
             --max-instances=1
-

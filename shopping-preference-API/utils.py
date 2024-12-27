@@ -1,7 +1,7 @@
 from sentence_transformers import SentenceTransformer
 import sklearn
 import pandas as pd
-
+from datetime import datetime
 
 def getQuery(customer_id : int, df_orders : pd.DataFrame):
     """
@@ -64,18 +64,34 @@ def getRecommendedProducts(customer_id : int,
     """
     Get dataframe containing recommendations for future product purchases given a customers previous purchases.
     """
-
+    
+    print(f"Creating embeddings...")
+    start_time = datetime.now()
     df_embedding = getEmbeddings(model, df_products)
+    end_time = datetime.now()
+    print(f"Embeddings created - Time Taken = {end_time - start_time}")
 
+    print(f"Retrieving customers previous orders...")
+    start_time = datetime.now()
     queries = getQuery(customer_id, df_orders)
+    end_time = datetime.now()
+    print(f"Customer orders retrieved - Time Taken = {end_time - start_time}")
 
+    print(f"Creating product recommendation dictionary...")
+    start_time = datetime.now()
     rec_dict = getRecommendationDict(model, queries, df_embedding, df_products, metric, top_k)
+    end_time = datetime.now()
+    print(f"Product recommendation dictionary created - Time Taken = {end_time - start_time}")
 
+
+    print(f"Creating recommended product dataframe...")
+    start_time = datetime.now()
     df_recs = pd.DataFrame(columns=df_products.columns)
     for product in rec_dict.keys():
+        print(f"Getting products related to {product}")
         product_recs = getProducts(rec_dict[product], df_products)
         df_recs = pd.concat([df_recs, product_recs], axis=0)
+    end_time = datetime.now()
+    print(f"Recommended product dataframe created - Time Taken = {end_time - start_time}")
 
     return df_recs
-
-def 
