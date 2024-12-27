@@ -88,10 +88,10 @@ def getRecommendedProducts(customer_id : int,
     start_time = datetime.now()
     df_recs = pd.DataFrame(columns=df_products.columns)
     for product in rec_dict.keys():
+        print(f"Getting products related to {product}")
         product_recs = getProducts(rec_dict[product], df_products)
         df_recs = pd.concat([df_recs, product_recs], axis=0)
     end_time = datetime.now()
     print(f"Recommended product dataframe created - Time Taken = {end_time - start_time}")
-
 
     return df_recs
