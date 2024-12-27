@@ -48,8 +48,8 @@ jobs:
             --region europe-west10 \
             --allow-unauthenticated \
             --port=8080 \
-            --memory=16Gi \
+            --memory=16G \
             --cpu=8 \   
-            --timeout=3600 \
+            --timeout=3600s \
             --max-instances=1
 
