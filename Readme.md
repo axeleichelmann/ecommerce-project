@@ -38,7 +38,7 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
 
 ## Data Structure & Initial Checks
 theLook's database structure consists of seven tables containing information on: users, events, orders, order items, products, inventory items, and distribution centers. These tables are related to each other through various shared keys as can be seen in the image below.
-![Database Structure](asserts/ERD.png)
+![Database Structure](assets/ERD.png)
 
 ## High-Level Overview of Data Insights
 
