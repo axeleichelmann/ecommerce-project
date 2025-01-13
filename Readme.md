@@ -49,7 +49,7 @@ Sales metrics across the board have seen impressive growth in 2024, with slight 
 ### Sales Trends:
 * The company has consistent growth in sales and profits throughout 2024 with a fall to just above the yearly average in the final week of the year. This decrease can likely be attributed to the decrease in demand post-christmas period.
 * The biggest client markets - China, United States, and Brazil - saw revenue increases of 93%, 93.2%, and 104.2% respectively and were responsible for 71.2% of the company's total revenue with China alone accounting for 34% of this. In 2025 efforts should be aimed at diversifying revenue sources by increasing marketing in medium sized markets such as South Korea, Spain and UK.
-* Australia and Poland made 1,191 and 118 orders respectively and brought in $104.8k and $11.1k. We should increase marketing efforts in these regions due to their strong economic status and large populations making them countries with large potential for revenue. This will further help to diversify our regional portfolio.
+* Australia and Poland made 1,191 and 118 orders respectively and brought in only $104.8k and $11.1k. We should increase marketing efforts in these regions due to their strong economic status and large populations making them countries with large potential for revenue. This will further help to diversify our regional portfolio.
 
 Below is the sales overview page from the Tableau dashboard. The entire interactive dashboard can be viewed [here](https://public.tableau.com/app/profile/axel.eichelmann5606/viz/TheLook-eCommerceSalesAnalysis/SalesDashboard).
 
@@ -60,11 +60,18 @@ Below is the sales overview page from the Tableau dashboard. The entire interact
 * $2,078,628 (43.5%) of our revenue in 2024 came from these 24.6% of customers that made more than one order. This highlights the importance of returning customers thus efforts should be made the promote repeat buying perhaps by offering deals to returning customers.
 * Seven of the top 10 highest revenue customers in 2023 did not make a purchase in 2024 - four of these were multiple time buyers. Accordingly, protocols should be implemented in order to maintain relationships with high-value customers to prevent their churn.
 
-Below is the customer overview page from the Tableau dashboard. The entire interactive dashboard can be viewed [here](https://public.tableau.com/app/profile/axel.eichelmann5606/viz/TheLook-eCommerceSalesAnalysis/CustomerDashboard).
+Below is the customer overview page from the Tableau dashboard.
 
 ![Customer Dashboard](assets/CustomerDashboard.png)
 
+### Product Analysis:
+* The top performing category was outerwear & coats bringing in $577.02k of revenue followed closely by Jeans which sold $563.63k, and then Sweaters which sold $357.38k.
+* Seven out of the top 10 products responsible for the most revenue in 2024 were cold weather jackets. Based on this and the previous insight, we should consider expanding the range of available products within the category of outerwear and coats in order to further increase sales.
+* There were 1,802 products in our inventory that achieved no sales in 2024. We should consider removing these from out inventory through flash sales in order to minimize losses. 
 
+Below is the product overview page from the Tableau dashboard.
+
+![Customer Dashboard](assets/ProductDashboard.png)
 
 
 
