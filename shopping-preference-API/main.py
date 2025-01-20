@@ -81,7 +81,7 @@ WITH order_values AS (
     SELECT 
       order_id,
       SUM(sale_price) as order_value
-    FROM `{gcr_project_id}.thelook_ecommerce.order_items`
+    FROM `ecommerce-data-project-444616.thelook_ecommerce.order_items`
     GROUP BY order_id
     ORDER BY order_id
 )
@@ -94,8 +94,8 @@ SELECT
   orders.created_at,
   orders.status,
   order_values.order_value
-FROM `{gcr_project_id}.thelook_ecommerce.orders` AS orders
-    LEFT JOIN `{gcr_project_id}.thelook_ecommerce.users` AS users ON orders.user_id = users.id
+FROM `ecommerce-data-project-444616.thelook_ecommerce.orders` AS orders
+    LEFT JOIN `ecommerce-data-project-444616.thelook_ecommerce.users` AS users ON orders.user_id = users.id
     LEFT JOIN order_values on orders.order_id = order_values.order_id
 ORDER BY orders.order_id;
 """
