@@ -2,3 +2,4 @@ env/*
 data/*
 env_secrets.py
 notebooks./env_secrets.py
+notebooks/data/*
