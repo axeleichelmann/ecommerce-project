@@ -149,7 +149,7 @@ print(f"'Recommend Products' function was successfully initiated - Time Taken = 
 
 print(f"Initiating 'upcoming shoppers' function")
 start_time = datetime.now()
-@app.get('/recommend_products')
+@app.get('/upcoming_shoppers')
 def upcomingShoppers():
     df_shoppers = getUpcomingShoppers(df_order_values, df_users, model_class=PredictorGGF)
     response = df_shoppers.to_dict(orient='list')
