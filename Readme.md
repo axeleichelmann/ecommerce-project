@@ -19,22 +19,29 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
  
 
  To achieve these objectives, we broke the problems down into the following mini-objectives:
- 1. Analyse the data and uncover critical insights that will improve *The Look*'s commercial success:
-   1.1 Analyse *The Look*'s database structure using SQL for familiarization with the dataset's table relationships.
-   1.2 Uncover insights and provide recommendations on the following areas: sales trends, regional performance, customer analysis, and product level performance.
-   1.3 Produce a high-level report of the insights uncovered, and an interactive Tableau dashboard displaying key metrics and graphs to accompany the report.
+ 1. Analyse the data and uncover critical insights that will improve *theLook*'s commercial success:
+
+      1.1 Analyse *theLook*'s database structure using SQL for familiarization with the dataset's table relationships.
+   
+      1.2 Uncover insights and provide recommendations on the following areas: sales trends, regional performance, customer analysis, and product level performance.
+      
+      1.3 Produce a high-level report of the insights uncovered, and an interactive Tableau dashboard displaying key metrics and graphs to accompany the report.
 
  2. Develop an API function that will identify recently acquired customer's with potential for large revenue:
-   2.1 Import order data from Google BigQuery and calculate Recency, Frequency, and Monetary Value for all of *The Look*'s customers.
-   2.2 Use the [lifetimes](https://lifetimes.readthedocs.io/en/latest/index.html) python package to predict future revenue for *The Look*'s customers that made their first purchase less than 90 days ago.
-   2.3 Return a list of customers that made their first purchase less than 90 days ago, and who's predicted future equity is very large.
+
+      2.1 Import order data from Google BigQuery and calculate Recency, Frequency, and Monetary Value for all of *The Look*'s customers.
+
+      2.2 Use the [lifetimes](https://lifetimes.readthedocs.io/en/latest/index.html) python package to predict future equity for *The Look*'s customers that made their first purchase less than 90 days ago.
+
+      2.3 Return a list of customers that made their first purchase less than 90 days ago, who's predicted future equity is large.
 
  3. Develop an API that will recommend products based on the customer's previous purchases:
-   3.1 Extract product data from Google BigQuery and create embeddings of the product names.
-   3.2 Create a function which extracts a customer's order data from Google BigQuery and creates embeddings of the names of their previously purchased products.
-   3.3 Use an LLM to evaluate the similarity between a customers previously purchased products and all products available at *The Look*, and return a list of the most similar products.
-
-An interactive Tableau dashboard presenting key sales and customer metrics can be viewed [here](https://public.tableau.com/app/profile/axel.eichelmann5606/viz/TheLook-eCommerceSalesAnalysis/SalesDashboard).
+   
+      3.1 Extract product data from Google BigQuery and create embeddings of the product names.
+   
+      3.2 Create a function which extracts a customer's order data from Google BigQuery and creates embeddings of the names of their previously purchased products.
+   
+      3.3 Use an LLM to evaluate the similarity between a customers previously purchased products, and all products available at *The Look*, and return a list of the most similar products.
 
 The SQL queries used to clean, organize and prepare data for the project can be viewed [here](https://github.com/axeleichelmann/ecommerce-project/tree/main/queries)
 
