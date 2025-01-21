@@ -132,7 +132,7 @@ print(f"Initiating 'info' function")
 start_time = datetime.now()
 @app.get('/info')
 def info():
-    return {'name' : 'Product Recommendation', 'Description' : "Search API to identify similar products to a customers previous purchases"}
+    return {'name' : 'The Look eCommerce API', 'Description' : "API to recommend products for shoppers and identify upcoming high value shoppers"}
 end_time = datetime.now()
 print(f"'info' function was successfully initiated - Time Taken = {time_end-time_start}s")
 
