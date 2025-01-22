@@ -40,10 +40,10 @@ SELECT
   products.brand as product_brand,
   order_items.sale_price,
   order_items.status
-FROM `ecommerce-data-project-444616.thelook_ecommerce.order_items` as order_items
-LEFT JOIN `ecommerce-data-project-444616.thelook_ecommerce.users` as users
+FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.order_items` as order_items
+LEFT JOIN `ecommerce-data-project-444616.the_look_ecommerce_constant.users` as users
 ON order_items.user_id = users.id
-LEFT JOIN `ecommerce-data-project-444616.thelook_ecommerce.products` as products
+LEFT JOIN `ecommerce-data-project-444616.the_look_ecommerce_constant.products` as products
 ON order_items.product_id = products.id
 ORDER BY order_items.user_id;
 """
@@ -56,7 +56,7 @@ print(f"Collecting products data from BigQuery...")
 start_time = datetime.now()
 PRODUCTS_QUERY  = f"""
 SELECT *
-FROM `ecommerce-data-project-444616.thelook_ecommerce.products`;
+FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.products`;
 """
 df_products = client.query_and_wait(PRODUCTS_QUERY).to_dataframe()
 end_time = datetime.now()
@@ -81,7 +81,7 @@ WITH order_values AS (
     SELECT 
       order_id,
       SUM(sale_price) as order_value
-    FROM `ecommerce-data-project-444616.thelook_ecommerce.order_items`
+    FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.order_items`
     GROUP BY order_id
     ORDER BY order_id
 )
@@ -94,8 +94,8 @@ SELECT
   orders.created_at,
   orders.status,
   order_values.order_value
-FROM `ecommerce-data-project-444616.thelook_ecommerce.orders` AS orders
-    LEFT JOIN `ecommerce-data-project-444616.thelook_ecommerce.users` AS users ON orders.user_id = users.id
+FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.orders` AS orders
+    LEFT JOIN `ecommerce-data-project-444616.the_look_ecommerce_constant.users` AS users ON orders.user_id = users.id
     LEFT JOIN order_values on orders.order_id = order_values.order_id
 ORDER BY orders.order_id;
 """
@@ -109,7 +109,7 @@ start_time = datetime.now()
 USERS_QUERY  = f"""
 SELECT
   *
-FROM `ecommerce-data-project-444616.thelook_ecommerce.users`;
+FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.users`;
 """
 df_users = client.query_and_wait(USERS_QUERY).to_dataframe()
 end_time = datetime.now()
