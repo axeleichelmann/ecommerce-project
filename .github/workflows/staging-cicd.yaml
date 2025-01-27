@@ -12,12 +12,6 @@ on:
     paths:
       - 'shopping-preference-API/**'
       - '.github/workflows/staging-cicd.yaml'
-  pull_request:
-    branches:
-      - staging
-    paths:
-      - 'shopping-preference-API/**'
-      - '.github/workflows/staging-cicd.yaml'
 
 jobs:
   dockerize-and-deploy:
