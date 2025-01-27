@@ -9,9 +9,9 @@ on:
   push:
     branches:
       - staging
-  pull_request:
-    branches:
-      - staging
+    paths:
+      - 'shopping-preference-API/**'
+      - '.github/workflows/staging-cicd.yaml'
 
 jobs:
   dockerize-and-deploy:
