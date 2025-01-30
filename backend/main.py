@@ -56,6 +56,12 @@ ORDER BY order_items.user_id;
 """
 df_orders = client.query_and_wait(ORDERS_QUERY).to_dataframe()
 
+# Create product & product list classes
+class Product(BaseModel):
+    name:str
+
+class Products(BaseModel):
+    products: List[Product]
 
 
 app = FastAPI()
@@ -73,7 +79,7 @@ app.add_middleware(
 )
 
 
-@app.get("/recommend-products")
+@app.get("/recommend-products", response_model=Products)
 def recommendProducts(customer_id : int):
 
     # Get list of customer's purchased products
@@ -90,12 +96,12 @@ def recommendProducts(customer_id : int):
         rec_dict[query] = query_dist_df.sort_values(by='dist').product_id.head(5).tolist()    # Add purchased product's top 5 most similar products to dictionary
 
     # Create recommended products dataframe
-    df_recs = pd.DataFrame(columns=df_products.columns)
+    recs_db = {"products": []}
     for product in rec_dict.keys():
         product_recs = df_products[df_products.id.isin(rec_dict[product])]
-        df_recs = pd.concat([df_recs, product_recs], axis=0)
-    
-    response = df_recs.to_dict(orient='list')
+        recs_db["products"].extend([Product(name=prod_name) for prod_name in product_recs.name.tolist()])
+
+    response = Products(products=recs_db["products"])
     return response
 
 
