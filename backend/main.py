@@ -137,6 +137,7 @@ FROM `ecommerce-data-project-444616.the_look_ecommerce_constant.orders` AS order
 ORDER BY orders.order_id;
 """
 df_order_values = client.query_and_wait(ORDER_VALUES_QUERY).to_dataframe()
+df_order_values['created_at'] = df_order_values.created_at.apply(lambda x : x.date())   # reformat 'created_at' column
 
 # Get users data
 print(f"Querying BigQuery for users dataframe...")
@@ -220,9 +221,6 @@ class Shoppers(BaseModel):
 @app.get("/upcoming-shoppers", response_model=Shoppers)
 def upcomingShoppers():
 
-    # Create copy of dataset & reformat 'created_at' column
-    df_order_values['created_at'] = df_order_values.created_at.apply(lambda x : x.date())
-
     # Get RFM summary data
     df_rfm  = lifetimes.utils.summary_data_from_transaction_data(df_order_values, 'user_id', 'created_at',
                                                                  freq='D', include_first_transaction = False)
@@ -250,8 +248,9 @@ def upcomingShoppers():
                                                age=shopper.age.values[0],
                                                gender=shopper.gender.values[0],
                                                country=shopper.country.values[0]))
-        
-    return Shoppers(shoppers=shoppers_db["shoppers"])
+    
+    response = Shoppers(shoppers=shoppers_db["shoppers"])
+    return response
     
 
 
