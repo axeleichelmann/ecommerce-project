@@ -33,7 +33,7 @@ const UpcomingShoppersList = () => {
         ) : (
         <ul>
           {shoppers.map((shopper, index) => (
-            <li key={index}>{shopper.shopper_id} | {shopper.name} | {shopper.email}</li>
+            <li key={index}>{shopper.shopper_id} | {shopper.name} | {shopper.email} | ${shopper.pred_equity}</li>
           ))}
         </ul>
         )}

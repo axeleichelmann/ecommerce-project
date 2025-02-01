@@ -214,6 +214,7 @@ class Shopper(BaseModel):
     age:int
     gender:str
     country:str
+    pred_equity:float
 
 class Shoppers(BaseModel):
     shoppers : List[Shopper]
@@ -237,7 +238,7 @@ def upcomingShoppers():
 
     # Select shoppers whose first purchase was less than 90 days ago and who's predicted equity is positive
     df_all = pd.merge(df_rfm, pred_equity, how = 'left', left_index=True, right_index=True)
-    upcoming_shoppers = df_rfm[(df_all.pred_equity > 0) & (df_all['T'] < 90)].index.to_list()
+    upcoming_shoppers = df_all[(df_all.pred_equity > 0) & (df_all['T'] < 90)].sort_values(by='pred_equity', ascending=False).index.to_list()
 
     shoppers_db = {"shoppers" : []}
     for id in upcoming_shoppers:
@@ -247,7 +248,8 @@ def upcomingShoppers():
                                                email=shopper.email.values[0],
                                                age=shopper.age.values[0],
                                                gender=shopper.gender.values[0],
-                                               country=shopper.country.values[0]))
+                                               country=shopper.country.values[0],
+                                               pred_equity=round(df_all.loc[id].pred_equity,2)))
     
     response = Shoppers(shoppers=shoppers_db["shoppers"])
     return response
