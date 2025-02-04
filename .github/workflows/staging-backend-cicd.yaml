@@ -12,7 +12,7 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/staging-backend-cicd.yaml'
-  pull:
+  pull_request:
     branches:
       - staging
     paths:
