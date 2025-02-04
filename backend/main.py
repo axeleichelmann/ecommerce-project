@@ -250,7 +250,6 @@ def upcomingShoppers():
                                                gender=shopper.gender.values[0],
                                                country=shopper.country.values[0],
                                                pred_equity=round(df_all.loc[id].pred_equity,2)))
-    
     response = Shoppers(shoppers=shoppers_db["shoppers"])
     return response
     
