@@ -12,6 +12,12 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/staging-backend-cicd.yaml'
+  pull:
+    branches:
+      - staging
+    paths:
+      - 'backend/**'
+      - '.github/workflows/staging-backend-cicd.yaml'
 
 jobs:
   dockerize-and-deploy:
