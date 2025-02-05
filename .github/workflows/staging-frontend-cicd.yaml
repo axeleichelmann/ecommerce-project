@@ -1,4 +1,4 @@
-name: Deploy Backend to Cloud Run Staging Area
+name: Deploy Frontend to Cloud Run Staging Area
 
 env:
   SERVICE_NAME: web-app-frontend
