@@ -1,23 +1,23 @@
-name: Deploy Backend to Cloud Run Staging Area
+name: Deploy Frontend to Cloud Run Staging Area
 
 env:
-  SERVICE_NAME: product-recs-api
+  SERVICE_NAME: web-app-frontend
   PROJECT_ID: ecommerce-data-project-444616
-  DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/api
+  DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/staging-frontend
 
 on:
   push:
     branches:
       - staging
     paths:
-      - 'backend/**'
-      - '.github/workflows/staging-backend-cicd.yaml'
+      - 'frontend/**'
+      - '.github/workflows/staging-frontend-cicd.yaml'
   pull_request:
     branches:
       - staging
     paths:
-      - 'backend/**'
-      - '.github/workflows/staging-backend-cicd.yaml'
+      - 'frontend/**'
+      - '.github/workflows/staging-frontend-cicd.yaml'
 
 jobs:
   dockerize-and-deploy:
@@ -42,7 +42,7 @@ jobs:
 
       - name: Build and Push Docker Image to GCP Artifact Registry
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f backend/Dockerfile backend/.
+          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f frontend/Dockerfile frontend/.
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
       - name: Deploy to Cloud Run Staging Environment
@@ -53,9 +53,9 @@ jobs:
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \
-            --port=8000 \
+            --port=5173 \
             --memory=16Gi \
             --cpu=8 \
-            --timeout=300 \
+            --timeout=3600 \
             --max-instances=1
 
