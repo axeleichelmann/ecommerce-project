@@ -53,7 +53,7 @@ jobs:
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \
-            --port=8001 \
+            --port=5173 \
             --memory=16Gi \
             --cpu=8 \
             --timeout=3600 \
