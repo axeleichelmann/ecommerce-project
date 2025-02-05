@@ -11,6 +11,4 @@ COPY ./ /app/
 RUN npm install
 RUN npm install axios
 
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev", "--", "--host"]

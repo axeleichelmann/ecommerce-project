@@ -56,6 +56,6 @@ jobs:
             --port=8000 \
             --memory=16Gi \
             --cpu=8 \
-            --timeout=3600 \
+            --timeout=300 \
             --max-instances=1
 
