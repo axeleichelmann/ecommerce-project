@@ -18,7 +18,8 @@ import io
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://web-app-frontend-50293729231.europe-west10.run.app"
 ]
 
 app.add_middleware(
@@ -250,7 +251,6 @@ def upcomingShoppers():
                                                gender=shopper.gender.values[0],
                                                country=shopper.country.values[0],
                                                pred_equity=round(df_all.loc[id].pred_equity,2)))
-    
     response = Shoppers(shoppers=shoppers_db["shoppers"])
     return response
     

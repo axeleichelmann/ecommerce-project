@@ -12,7 +12,7 @@ on:
     paths:
       - 'backend/**'
       - '.github/workflows/staging-backend-cicd.yaml'
-  pull:
+  pull_request:
     branches:
       - staging
     paths:
@@ -53,9 +53,9 @@ jobs:
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \
-            --port=8080 \
+            --port=8000 \
             --memory=16Gi \
             --cpu=8 \
-            --timeout=3600 \
+            --timeout=300 \
             --max-instances=1
 
