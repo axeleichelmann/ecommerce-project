@@ -9,6 +9,6 @@ COPY ./ /app/
 
 # install npm packages
 RUN npm install
-RUN npm install axios dotenv
+RUN npm install axios
 
 CMD ["npm", "run", "dev", "--", "--host"]
