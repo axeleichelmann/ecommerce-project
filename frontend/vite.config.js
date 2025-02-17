@@ -12,4 +12,4 @@ export default defineConfig({
       "web-app-frontend-50293729231.europe-west10.run.app" 
     ]
   }
-})
+});
