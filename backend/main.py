@@ -16,7 +16,7 @@ import io
 import os
 
 # Read environment variable
-environment = os.getenv("STAGING_OR_PROD")  # Default to "STAGING" if not set
+environment = os.getenv("STAGING_OR_PROD")
 
 # Set API URL based on environment
 if environment == "PROD":

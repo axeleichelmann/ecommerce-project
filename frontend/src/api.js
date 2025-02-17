@@ -9,6 +9,7 @@ const API_URL =
     ? "https://ecommerce-api-production-50293729231.europe-west10.run.app"
     : "https://product-recs-api-50293729231.europe-west10.run.app";
 
+console.log(`environment is: ${environment}`);
 console.log(`Using API URL: ${API_URL}`);
 
 
