@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Import staging or production environment variable
-const environment = import.meta.env.STAGING_OR_PROD;
+const environment = import.meta.env.VITE_STAGING_OR_PROD;
 
 // Define appropriate environment API url
 const API_URL =
@@ -9,6 +9,7 @@ const API_URL =
     ? "https://ecommerce-api-production-50293729231.europe-west10.run.app"
     : "https://product-recs-api-50293729231.europe-west10.run.app";
 
+console.log(`environment is: ${environment}`);
 console.log(`Using API URL: ${API_URL}`);
 
 
