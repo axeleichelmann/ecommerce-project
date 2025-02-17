@@ -26,6 +26,7 @@ else:
 
 
 app = FastAPI()
+print(f"STAGING_OR_PROD={environment}, FRONTEND_URL={FRONTEND_URL}")
 
 origins = [
     "http://localhost:5173",
@@ -264,8 +265,6 @@ def upcomingShoppers():
     response = Shoppers(shoppers=shoppers_db["shoppers"])
     return response
     
-
-
 
 
 
