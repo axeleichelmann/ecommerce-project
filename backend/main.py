@@ -13,13 +13,23 @@ import lifetimes
 
 from google.cloud import storage, bigquery
 import io
+import os
+
+# Read environment variable
+environment = os.getenv("STAGING_OR_PROD")  # Default to "STAGING" if not set
+
+# Set API URL based on environment
+if environment == "PROD":
+    FRONTEND_URL = "https://web-app-frontend-production-50293729231.europe-west10.run.app"
+else:
+    FRONTEND_URL = "https://web-app-frontend-50293729231.europe-west10.run.app"
 
 
 app = FastAPI()
 
 origins = [
     "http://localhost:5173",
-    "https://web-app-frontend-50293729231.europe-west10.run.app"
+    FRONTEND_URL
 ]
 
 app.add_middleware(

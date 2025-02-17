@@ -4,6 +4,7 @@ env:
   SERVICE_NAME: web-app-frontend-production
   PROJECT_ID: ecommerce-data-project-444616
   DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/production-frontend
+  STAGING_OR_PROD: PROD
 
 on:
   push:
@@ -44,6 +45,7 @@ jobs:
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
+            --set-env-vars STAGING_OR_PROD=$STAGING_OR_PROD \
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \

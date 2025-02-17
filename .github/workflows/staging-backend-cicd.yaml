@@ -4,6 +4,7 @@ env:
   SERVICE_NAME: product-recs-api
   PROJECT_ID: ecommerce-data-project-444616
   DOCKER_IMAGE_URL: europe-west10-docker.pkg.dev/ecommerce-data-project-444616/product-recs-api/api
+  STAGING_OR_PROD: STAGING
 
 on:
   push:
@@ -50,6 +51,7 @@ jobs:
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
+            --set-env-vars STAGING_OR_PROD=$STAGING_OR_PROD \
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \
