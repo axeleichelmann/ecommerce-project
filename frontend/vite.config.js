@@ -1,8 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import dotenv from 'dotenv';
 
-// Import staging or production environment variable
-const environment = import.meta.env.STAGING_OR_PROD;
+// Load environment variables
+dotenv.config();
+const environment = process.env.STAGING_OR_PROD;
 
 // Define appropriate environment API url
 export const API_URL =
