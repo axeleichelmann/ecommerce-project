@@ -13,6 +13,12 @@ on:
     paths:
       - 'frontend/**'
       - '.github/workflows/production-frontend-cicd.yaml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/production-frontend-cicd.yaml'
 
 jobs:
   dockerize-and-deploy:
