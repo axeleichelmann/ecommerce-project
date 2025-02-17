@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../config';
+import { API_URL } from '../vite.config';
 
 // Create an instance of axios with the base url
 const api = axios.create({

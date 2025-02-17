@@ -1,6 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { FRONTEND_URL } from './config'
+
+// Import staging or production environment variable
+const environment = import.meta.env.STAGING_OR_PROD;
+
+// Define appropriate environment API url
+export const API_URL =
+  environment === "PROD"
+    ? "https://ecommerce-api-production-50293729231.europe-west10.run.app"
+    : "https://product-recs-api-50293729231.europe-west10.run.app";
+console.log(`Using API URL: ${API_URL}`);
+
+
+// Define allowed hosts for frontend URL
+const FRONTEND_URL = 
+  environment === "PROD"
+    ? "web-app-frontend-production-50293729231.europe-west10.run.app"
+    : "web-app-frontend-50293729231.europe-west10.run.app";
 
 // https://vite.dev/config/
 export default defineConfig({
