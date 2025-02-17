@@ -51,7 +51,7 @@ jobs:
           echo SERVICE_NAME $SERVICE_NAME
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
-            --set-env-vars STAGING_OR_PROD=$STAGING_OR_PROD \
+            --set-env-vars STAGING_OR_PROD=${{ env.STAGING_OR_PROD }} \
             --platform managed \
             --region europe-west10 \
             --allow-unauthenticated \

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Import staging or production environment variable
-const environment = import.meta.env.VITE_STAGING_OR_PROD;
+const environment = import.meta.env.STAGING_OR_PROD;
 
 // Define appropriate environment API url
 const API_URL =
