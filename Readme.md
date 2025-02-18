@@ -12,42 +12,33 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
 
 # Project Background
 
- The main objectives of this project are three-fold:
- > 1. **To analyse company data and uncover critical insights that will improve *The Look*'s commercial success**
- > 2. **To develop an API function that will identify recently acquired customer's with potential for large future revenue**
- > 3. **To develop an API function that will recommend products based on the customer's previous purchases**
+ The main objectives of this project are two-fold:
+ > 1. **To analyse company data and uncover actionable insights that will improve *The Look*'s commercial success**
+ > 2. **To develop a web application that will provide valuable insights into *The Look*'s customer base and facilitate the optimization of marketing campaigns**
  
 
  To achieve these objectives, we broke the problems down into the following mini-objectives:
- 1. Analyse the data and uncover critical insights that will improve *theLook*'s commercial success:
+ 1. Analyse company data and uncover actionable insights that will improve *The Look*'s commercial success
 
-      1.1 Analyse *theLook*'s database structure using SQL for familiarization with the dataset's table relationships.
-   
-      1.2 Uncover insights and provide recommendations on the following areas: sales trends, regional performance, customer analysis, and product level performance.
+      1.1 Analyse *theLook*'s database structure in Google BigQuery using SQL to get familiar with the dataset's table relationships. Also perform exploratory data analysis in BigQuery to identify any necessary cleaning or pre-processing that needs to be applied to the data before the data analysis phase.
+
+      1.2. Carry out data analysis in Python & Tableau, and produce a Tableau dashboard that highlights key insights from the data analysis.
       
-      1.3 Produce a high-level report of the insights uncovered, and an interactive Tableau dashboard displaying key metrics and graphs to accompany the report.
+      1.3 Produce a high-level executive summary report discussing the key insights shown in the Tableau dashboard, and provide suggestions on actions to take to improve *The Look*'s commercial success.
 
- 2. Develop an API function that will identify recently acquired customer's with potential for large revenue:
+ 2. Develop a web application that will provide valuable insights into *The Look*'s customer base and facilitate the optimization of marketing campaigns
 
-      2.1 Import order data from Google BigQuery and calculate Recency, Frequency, and Monetary Value for all of *The Look*'s customers.
+      2.1 Create a high-value customer prediction model which aims to identify shoppers that made their first purchase within the last 90 days, and whom have the potential for large customer lifetime value. Creating this model will involve experimenting with a rule-based prediction approach, and a machine learning based prediction approach that uses the [*lifetimes*](https://lifetimes.readthedocs.io/en/latest/index.html) python package to predict shoppers' future equity.
 
-      2.2 Use the [lifetimes](https://lifetimes.readthedocs.io/en/latest/index.html) python package to predict future equity for *The Look*'s customers that made their first purchase less than 90 days ago.
+      2.2 Create a product recommendation function that recommends products currently in *The Look*'s stock based on the similarity of the product to the shopper's previously purchased products. The similarity between products will be determined by an LLM that calculates the distance between embeddings of product names.
 
-      2.3 Return a list of customers that made their first purchase less than 90 days ago, who's predicted future equity is large.
-
- 3. Develop an API that will recommend products based on the customer's previous purchases:
-   
-      3.1 Extract product data from Google BigQuery and create embeddings of the product names.
-   
-      3.2 Create a function which extracts a customer's order data from Google BigQuery and creates embeddings of the names of their previously purchased products.
-   
-      3.3 Use an LLM to evaluate the similarity between a customers previously purchased products, and all products available at *The Look*, and return a list of the most similar products.
-
-The SQL queries used to clean, organize and prepare data for the project can be viewed [here](https://github.com/axeleichelmann/ecommerce-project/tree/main/queries)
+      2.3. Deploy both the high-value customer prediction model and the product recommendation function as an API on Google Cloud Run, which is accessible via a web-app frontend. This frontend will display the list of predicted high-value shoppers returned by the API, and will be able to return product recommendations for a shopper after their shopper ID is provided as a text input.
 
 # Data Structure & Initial Checks
 *The Look*'s database structure consists of seven tables containing information on: users, events, orders, order items, products, inventory items, and distribution centers. These tables are related to each other through various shared keys as can be seen in the image below.
 ![Database Structure](assets/ERD.png)
+
+The SQL queries used to clean, organize and prepare data for the project can be viewed [here](https://github.com/axeleichelmann/ecommerce-project/tree/main/queries)
 
 # Executive Summary
 ### Overview of findings
@@ -80,10 +71,15 @@ Below is the product overview page from the Tableau dashboard.
 
 ![Customer Dashboard](assets/ProductDashboard.png)
 
+# Web-Application User Guide
+The [web-application frontend](https://web-app-frontend-production-50293729231.europe-west10.run.app/) has the following layout:
 
+![Web-App Frontend](assets/frontend.png)
 
+At the top of the page is the product recommendation function which provides product recommendations for a shopper based on their previous purchases. In order to generate product recommendations, simply input the Customer ID of the shopper for whom you want recommended products, and click on the 'Find Recommended Products' button. For example, in the image below we see the output when product recommendations are generated for the shopper 'Eric Carpenter' with Customer ID 99484.
 
+![Web-App Product Recommendations](assets/frontend-recommendations.png)
 
+Below this function is the list of predicted upcoming high value shoppers. These are shoppers who made their first purchase less than 90 days ago, and are predicted to have a large customer lifetime value. Each entry in this list contains the shoppers Customer ID, Name, Email, and their prediced future equity in the next 12 months.
 
-
-
+This application facilitates improved marketing campaigns by not only identifying shoppers with the potential for large revenue, but also providing personalized content for content for marketing campaigns that will be more likely to cause the shopper to make repeat purchases than a generic blanket marketing approach.
