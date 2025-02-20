@@ -118,6 +118,6 @@ print(f"Finished creating recommendations dataframe - Time Taken = {datetime.now
 # Create new worksheet with upcoming shoppers & recommended products
 print(f"Uploading recommendations dataframe to worksheet")
 spreadsheet = client.open_by_key("1LIcZbfx_Gh_spRUAAst2doEb7bW0ZJuwR0VpRQWcUvU")
-worksheet = spreadsheet.add_worksheet(title=f"recommendations-{datetime.strftime(datetime.date.today(), '%Y-%m-%d')}", 
+worksheet = spreadsheet.add_worksheet(title=f"recommendations-{datetime.strftime(datetime.now().date(), '%d-%m-%Y')}", 
                                       rows=recs_df.shape[0], cols=recs_df.shape[1])
 worksheet.update([recs_df.columns.values.tolist()] + recs_df.values.tolist())
