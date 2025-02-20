@@ -3,3 +3,5 @@ data/*
 env_secrets.py
 notebooks./env_secrets.py
 notebooks/data/*
+backend/venv/*
+backend/credentials.json
