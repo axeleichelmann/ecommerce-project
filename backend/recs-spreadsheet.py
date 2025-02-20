@@ -109,7 +109,6 @@ for row, row_vals in df_upcoming_shoppers.iterrows():
     recs = recommendProducts(shopper_id)['products']
     for rec_num in range(5):
         recs_data[f"Rec Prod{rec_num+1}"].append(recs[rec_num])
-        print(recs[rec_num])
 
 recs_df = pd.DataFrame(recs_data)
 recs_df['Email Sent'] = '' # Add empty 'email sent' column
