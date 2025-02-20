@@ -6,7 +6,7 @@ env:
 
 on:
   schedule:
-    - cron: '38 */1 * * *' # - cron: '0 0 1 */3 *' # Runs at 12:01 AM of 1st day of every 3rd month
+    - cron: '40 */1 * * *' # - cron: '0 0 1 */3 *' # Runs at 12:01 AM of 1st day of every 3rd month
 
 jobs:
   build:
