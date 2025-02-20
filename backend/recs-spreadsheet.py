@@ -6,8 +6,10 @@ storage_client = storage.Client()
 # Import packages to connect to Google Sheets API
 import gspread
 from google.oauth2.service_account import Credentials
+import json
 scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-creds = Credentials.from_service_account_file("backend/credentials.json", scopes=scopes)
+secret = os.getenv('GCP_SERVICE_ACCOUNT')
+creds = Credentials.from_service_account_info(secret, scopes=scopes)
 client = gspread.authorize(creds)
 
 # Import packages to create product recommendations
@@ -23,7 +25,8 @@ content = bucket.blob("upcoming_shoppers.csv").download_as_bytes() # Download th
 df_upcoming_shoppers = pd.read_csv(io.BytesIO(content)) # Convert to Pandas DataFrame
 
 # Create dataframe with product recommendations for upcoming shoppers
-print(f"Creating Recommendations Dataframe")
+print(f"Creating Recommendations Dataframe...")
+start_time = datetime.now()
 recs_data = {'First Name' : [],
              'Last Name' : [],
              'Email' : [],
@@ -41,11 +44,12 @@ for row, row_vals in df_upcoming_shoppers.iterrows():
 
 recs_df = pd.DataFrame(recs_data)
 recs_df['Email Sent'] = '' # Add empty 'email sent' column
+print(f"Finished creating recommendations dataframe - Time Taken = {datetime.now() - start_time}")
 
 
 # Create new worksheet with upcoming shoppers & recommended products
 print(f"Uploading recommendations dataframe to worksheet")
 spreadsheet = client.open_by_key("1LIcZbfx_Gh_spRUAAst2doEb7bW0ZJuwR0VpRQWcUvU")
-worksheet = spreadsheet.add_worksheet(title=f"recommendations-{datetime.strftime(datetime.now().date(), '%Y-%m-%d')}", 
+worksheet = spreadsheet.add_worksheet(title=f"recommendations-{datetime.strftime(datetime.date.today(), '%Y-%m-%d')}", 
                                       rows=recs_df.shape[0], cols=recs_df.shape[1])
 worksheet.update([recs_df.columns.values.tolist()] + recs_df.values.tolist())
