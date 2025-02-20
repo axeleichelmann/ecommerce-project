@@ -8,7 +8,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import json
 scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-secret = os.getenv('GCP_SERVICE_ACCOUNT')
+secret = json.loads(os.getenv('GCP_SERVICE_ACCOUNT'))
 creds = Credentials.from_service_account_info(secret, scopes=scopes)
 client = gspread.authorize(creds)
 
