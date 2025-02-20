@@ -1,0 +1,11 @@
+pandas
+sentence_transformers
+scikit-learn
+lifetimes
+google-cloud-bigquery
+google-cloud-storage
+db-dtypes
+gspread
+google-api-python-client
+google-auth-httplib2 
+google-auth-oauthlib
