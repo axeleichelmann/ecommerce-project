@@ -14,7 +14,7 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
 
  The main objectives of this project are two-fold:
  > 1. **To analyse company data and uncover actionable insights that will improve *The Look*'s commercial success**
- > 2. **To develop a web application that will provide valuable insights into *The Look*'s customer base and facilitate the optimization of marketing campaigns**
+ > 2. **To develop a tool that will identify recently acquired shoppers with potential for large revenue, and create personalized product recommendations for email marketing campaigns to these shoppers**
  
 
  To achieve these objectives, we broke the problems down into the following mini-objectives:
@@ -26,13 +26,15 @@ This dataset contains data from a fictitious eCommerce clothing site developed b
       
       1.3 Produce a high-level executive summary report discussing the key insights shown in the Tableau dashboard, and provide suggestions on actions to take to improve *The Look*'s commercial success.
 
- 2. Develop a web application that will provide valuable insights into *The Look*'s customer base and facilitate the optimization of marketing campaigns
+ 2. Develop a tool that will identify recently acquired shoppers with potential for large revenue, and create personalized product recommendations for email marketing campaigns to these shoppers
 
       2.1 Create a high-value customer prediction model which aims to identify shoppers that made their first purchase within the last 90 days, and whom have the potential for large customer lifetime value. Creating this model will involve experimenting with a rule-based prediction approach, and a machine learning based prediction approach that uses the [*lifetimes*](https://lifetimes.readthedocs.io/en/latest/index.html) python package to predict shoppers' future equity.
 
-      2.2 Create a product recommendation function that recommends products currently in *The Look*'s stock based on the similarity of the product to the shopper's previously purchased products. The similarity between products will be determined by an LLM that calculates the distance between embeddings of product names.
+      2.2 Create a product recommendation function that recommends products currently in *The Look*'s stock based on similarity to the shopper's previously purchased products. The similarity between products will be determined by an LLM that calculates the distance between embeddings of product names.
 
-      2.3. Deploy both the high-value customer prediction model and the product recommendation function as an API on Google Cloud Run, which is accessible via a web-app frontend. This frontend will display the list of predicted high-value shoppers returned by the API, and will be able to return product recommendations for a shopper after their shopper ID is provided as a text input.
+      2.3 Create a Google Sheets spreadsheet which contains the names and emails of all the upcoming shoppers as well as their top 5 recommended products, and is in a format ready to be used for mail merge with Gmail.
+
+      2.4 Automate the above 3 processes to occur every 90 days to account for changes in stock and new recently shoppers.
 
 # Data Structure & Initial Checks
 *The Look*'s database structure consists of seven tables containing information on: users, events, orders, order items, products, inventory items, and distribution centers. These tables are related to each other through various shared keys as can be seen in the image below.
@@ -71,8 +73,18 @@ Below is the product overview page from the Tableau dashboard.
 
 ![Customer Dashboard](assets/ProductDashboard.png)
 
-# Web-Application User Guide
-The [web-application frontend](https://web-app-frontend-production-50293729231.europe-west10.run.app/) has the following layout:
+# Upcoming Shoppper Marketing Tool User Guide
+The goal of the upcoming shopper marketing tool is to increase the chances of a recently acquired shopper to realize their potential for large revenue, and become a regular shopper. In order to achieve this, every 3 months the tool analyzes the transaction data of shoppers who's first purchase with the store was made within the last 90 days and predicts which of these shoppers has the potential to produce large future revenue - we will refer to these shoppers as '*upcoming shoppers*'. 
+
+Once the upcoming shoppers have been predicted, the marketing tool uses a Large-Language-Model to generate personalized product recommendations for each of these shoppers based on their previously purchased products and what is currently in stock. After this, a new worksheet will be created in Google Sheets containing a list of the upcoming shoppers first and last names, email address, and their top 5 recommended products (such as in the image below). Note that this spreadsheet is be in a format compatible with Gmail's 'mail merge' function, and is ready to be used to send personalized marketing emails to the upcoming shoppers, thus increasing the chances that they will continue making purchases at the store and realize their potential to produce a large future revenue.
+
+![Recommendation Spreadsheet](assets/RecommendationSpreadsheet.png)
+
+<!-- # Extra : Customer Base Insights Web Application
+I also created a customer base insights [web-application](https://web-app-frontend-production-50293729231.europe-west10.run.app/) with the goal of 
+
+
+with the following layout:
 
 ![Web-App Frontend](assets/frontend.png)
 
@@ -82,4 +94,4 @@ At the top of the page is the product recommendation function which provides pro
 
 Below this function is the list of predicted upcoming high value shoppers. These are shoppers who made their first purchase less than 90 days ago, and are predicted to have a large customer lifetime value. Each entry in this list contains the shoppers Customer ID, Name, Email, and their prediced future equity in the next 12 months.
 
-This application facilitates improved marketing campaigns by not only identifying shoppers with the potential for large revenue, but also providing personalized content for content for marketing campaigns that will be more likely to cause the shopper to make repeat purchases than a generic blanket marketing approach.
+This application facilitates improved marketing campaigns by not only identifying shoppers with the potential for large revenue, but also providing personalized content for content for marketing campaigns that will be more likely to cause the shopper to make repeat purchases than a generic blanket marketing approach. -->
