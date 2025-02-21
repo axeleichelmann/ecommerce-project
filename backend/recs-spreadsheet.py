@@ -97,13 +97,13 @@ print(f"Creating Recommendations Dataframe...")
 start_time = datetime.now()
 recs_data = {'First Name' : [],
              'Last Name' : [],
-             'Email' : [],
+             'Recipient' : [],
              'Rec Prod1' : [], 'Rec Prod2' : [], 'Rec Prod3' : [], 'Rec Prod4' : [], 'Rec Prod5' : []}
 
 for row, row_vals in df_upcoming_shoppers.iterrows():
     recs_data['First Name'].append(row_vals['name'].split(' ')[0])
     recs_data['Last Name'].append(row_vals['name'].split(' ')[1])
-    recs_data['Email'].append(row_vals['email'])
+    recs_data['Recipient'].append(row_vals['email'])
 
     shopper_id = row_vals['shopper_id']
     recs = recommendProducts(shopper_id)['products']
