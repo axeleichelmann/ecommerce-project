@@ -53,5 +53,6 @@ jobs:
             --memory=16Gi \
             --cpu=8 \
             --timeout=300 \
-            --max-instances=1
+            --max-instances=1 \
+            --min-instances=0
 
