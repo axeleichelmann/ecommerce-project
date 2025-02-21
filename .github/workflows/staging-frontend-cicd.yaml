@@ -7,6 +7,12 @@ env:
   STAGING_OR_PROD: STAGING
 
 on:
+  push:
+    branches:
+      - staging
+    paths:
+      - 'backend/**'
+      - '.github/workflows/staging-backend-cicd.yaml'
   pull_request:
     branches:
       - staging
