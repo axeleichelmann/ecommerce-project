@@ -73,7 +73,7 @@ Below is the product overview page from the Tableau dashboard.
 
 ![Customer Dashboard](assets/ProductDashboard.png)
 
-# Upcoming Shoppper Marketing Tool User Guide
+# Upcoming Shopper Marketing Tool User Guide
 The goal of the upcoming shopper marketing tool is to increase the chances of a recently acquired shopper to realize their potential for large revenue, and become a regular shopper. In order to achieve this, every 3 months the tool analyzes the transaction data of shoppers who's first purchase with the store was made within the last 90 days and predicts which of these shoppers has the potential to produce large future revenue - we will refer to these shoppers as '*upcoming shoppers*'. 
 
 Once the upcoming shoppers have been predicted, the marketing tool uses a Large-Language-Model to generate personalized product recommendations for each of these shoppers based on their previously purchased products and what is currently in stock. After this, a new worksheet will be created in Google Sheets containing a list of the upcoming shoppers first and last names, email address, and their top 5 recommended products (such as in the image below). Note that this spreadsheet is be in a format compatible with Gmail's 'mail merge' function, and is ready to be used to send personalized marketing emails to the upcoming shoppers, thus increasing the chances that they will continue making purchases at the store and realize their potential to produce a large future revenue.
